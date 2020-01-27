@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const DEFAULT_PROFILE_IMAGE = '/images/users/default.png';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,6 +39,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getProfileImageAttribute($value)
+    {
+        return $value ?? self::DEFAULT_PROFILE_IMAGE;
+    }
 
     public function isAdmin()
     {

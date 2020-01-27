@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
+    const HOME = '/dashboard';
+
     protected $namespace = 'App\Http\Controllers';
+
     protected $admin_namespace = 'App\Src\Admin\Http\Controllers';
+
     protected $user_namespace = 'App\Src\User\Http\Controllers';
+
     protected $frontend_namespace = 'App\Src\Frontend\Http\Controllers';
 
 
@@ -57,7 +62,7 @@ class RouteServiceProvider extends ServiceProvider
             ->group(app_path('Src/Admin/routes/web.php'));
 
         Route::domain(env("ADMIN_URL"))
-            ->middleware('web')
+            ->middleware(['web', 'guest'])
             ->as('admin.')
             ->namespace($this->admin_namespace . '\Auth')
             ->group(app_path('Src/Admin/routes/auth.php'));

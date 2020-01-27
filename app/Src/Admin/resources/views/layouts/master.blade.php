@@ -8,7 +8,7 @@
 <body
     class="{{ (auth()->check() && auth()->user()->isAdmin()) ? 'hold-transition skin-blue sidebar-mini' : 'hold-transition login-page' }}">
 
-    @if (auth()->check() && auth()->user()->isAdmin())
+    @role('Admin')
 
     <div class="wrapper">
 
@@ -40,7 +40,7 @@
 
     </div>
 
-    @endif
+    @endrole
 
 
     @include('admin::layouts.includes.scripts')
